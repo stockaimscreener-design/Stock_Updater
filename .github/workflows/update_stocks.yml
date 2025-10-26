@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 2 * * 0'
   workflow_dispatch:
-
+  
 jobs:
   update-stocks:
     runs-on: ubuntu-latest
