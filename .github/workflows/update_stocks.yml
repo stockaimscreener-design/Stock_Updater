@@ -14,17 +14,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      - name: List files (debug)
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in root:"
+          ls -la
+          echo "Checking for requirements.txt:"
+          test -f requirements.txt && echo "requirements.txt found" || echo "requirements.txt NOT FOUND"
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
-          cache-dependency-path: 'requirements.txt'
       
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install pandas supabase python-dotenv
       
       - name: Run stock updater
         env:
@@ -40,8 +47,3 @@ jobs:
           name: stock-backup-${{ github.run_number }}
           path: stocks_backup_*.csv
           retention-days: 30
-      
-      - name: Notify on failure
-        if: failure()
-        run: |
-          echo "Stock update failed! Check the logs."
