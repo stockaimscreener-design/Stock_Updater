@@ -47,4 +47,12 @@ jobs:
           name: stock-backup-${{ github.run_number }}
           path: stocks_backup_*.csv
           retention-days: 30
+<<<<<<< HEAD
         
+=======
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Stock update failed! Check the logs."
+>>>>>>> 517031eee256932a029b136121a9c3cdc9c8708f
