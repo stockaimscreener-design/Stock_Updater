@@ -17,14 +17,14 @@ jobs:
       - name: Debug file structure
         run: |
           echo "PWD: $(pwd)"
-          echo "Files:"
-          ls -R
+          echo "Files in root:"
+          ls -la
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
+          cache: 'pip'          # <— prevents auto error scan
           check-latest: true
 
       - name: Install dependencies
